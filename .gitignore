@@ -1,4 +1,6 @@
 *
+.idea/
+.idea/**
 !app/
 !app/**
 !.gitignore
@@ -8,3 +10,5 @@
 !gradlew.bat
 !README.md
 !settings.gradle.kts
+!buildSrc/
+!buildSrc/**
