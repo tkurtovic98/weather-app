@@ -8,8 +8,6 @@ object Plugins {
 
     const val hilt = "com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}"
 
-    const val navigation = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAVIGATION}"
-
 }
 
 object Libs {
@@ -33,10 +31,6 @@ object Libs {
     private const val roomRuntime = "androidx.room:room-runtime:${Versions.ROOM}"
     private const val roomKtx = "androidx.room:room-ktx:${Versions.ROOM}"
 
-    private const val fragmentNavigationKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
-    private const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
-    private const val navigationDynamicFeaturesFragment = "androidx.navigation:navigation-dynamic-features-fragment:${Versions.NAVIGATION}"
-
     val appLibs = arrayListOf<String>().apply {
         add(kotlinStdlib)
         add(coreKtx)
@@ -50,9 +44,6 @@ object Libs {
         add(hiltViewModel)
         add(roomRuntime)
         add(roomKtx)
-        add(fragmentNavigationKtx)
-        add(navigationUiKtx)
-        add(navigationDynamicFeaturesFragment)
     }
 
 }
@@ -74,5 +65,18 @@ object Compilers {
     }
 
 
+}
+
+object Testing {
+
+    private const val jUnitAndroidx = "androidx.test.ext:junit:${Versions.ANDROIDX_TEST_EXT_KOTLIN_RUNNER}"
+    private const val jUnit = "junit:junit:${Versions.JUNIT}"
+    private const val jUnitAndroidxKtx = "androidx.test.ext:junit-ktx:${Versions.ANDROIDX_TEST_EXT_KOTLIN_RUNNER}"
+
+    val testingLibs = arrayListOf<String>().apply {
+        add(jUnitAndroidx)
+        add(jUnit)
+        add(jUnitAndroidxKtx)
+    }
 }
 

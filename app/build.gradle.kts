@@ -1,11 +1,10 @@
-
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
-    id("androidx.navigation.safeargs.kotlin")
+    id("org.jlleitschuh.gradle.ktlint") version Versions.KT_LINT_GRADLE
 }
 
 android {
@@ -13,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "hr.kurtovic.weatherkurtovi"
-        minSdkVersion (AppConfig.minSdk)
+        minSdkVersion(AppConfig.minSdk)
         targetSdkVersion(AppConfig.targetSdk)
         versionCode = AppConfig.versionCode
         versionName = AppConfig.versionName
@@ -44,7 +43,12 @@ android {
 dependencies {
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation (Libs.appLibs)
+    implementation(Libs.appLibs)
     kapt(Compilers.libCompilers)
+    testImplementation(Testing.testingLibs)
+}
 
+ktlint {
+    android.set(true)
+    outputColorName.set("RED")
 }
