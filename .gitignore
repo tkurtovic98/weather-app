@@ -8,5 +8,6 @@
 !gradlew.bat
 !README.md
 !settings.gradle.kts
-!buildSrc/
-!buildSrc/**
+!/buildSrc/build.gradle.kts
+!pre-commit.sh
+!/buildSrc
