@@ -31,6 +31,13 @@ object Libs {
     private const val roomRuntime = "androidx.room:room-runtime:${Versions.ROOM}"
     private const val roomKtx = "androidx.room:room-ktx:${Versions.ROOM}"
 
+    private const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT_2}"
+    private const val retrofit2RxJava = "com.squareup.retrofit2:adapter-rxjava2:${Versions.RETROFIT_2}"
+    private const val retrofit2GsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT_2}"
+
+    private const val rxJavaAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.RX_JAVA_ANDROID}"
+    private const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.RX_JAVA}"
+
     val appLibs = arrayListOf<String>().apply {
         add(kotlinStdlib)
         add(coreKtx)
@@ -44,6 +51,11 @@ object Libs {
         add(hiltViewModel)
         add(roomRuntime)
         add(roomKtx)
+        add(retrofit2)
+        add(retrofit2RxJava)
+        add(retrofit2GsonConverter)
+        add(rxJavaAndroid)
+        add(rxJava)
     }
 
 }

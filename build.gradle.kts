@@ -28,6 +28,7 @@ tasks.register<Copy>("installGitHook") {
     from (file(rootProject.rootDir.path.appendToPath("./pre-commit.sh")))
     into (file(rootProject.rootDir.path.appendToPath(".git/hooks")))
     fileMode = 777
+
 }
 
 tasks.getByPath(":app:preBuild").dependsOn(tasks["installGitHook"])
