@@ -24,41 +24,25 @@
         app:layout_constraintTop_toBottomOf="@+id/citySearchTab">
 
         <TextView
-            android:id="@+id/todayWeatherText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
-            android:text="Today's weather in"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/cityNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
-            android:layout_marginStart="@dimen/margin_medium"
-            app:layout_constraintStart_toEndOf="@id/todayWeatherText"
+            android:layout_marginStart="@dimen/default_margin"
+            android:textAppearance="@style/TextAppearance.AppTheme.CityName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/basicWeatherInfoDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/default_margin"
-            app:layout_constraintTop_toBottomOf="@id/todayWeatherText"
-
-            />
-
-        <TextView
+        <ImageView
             android:id="@+id/basicWeatherIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
+            android:layout_width="@dimen/basic_weather_icon_height"
+            android:layout_height="@dimen/basic_weather_icon_width"
+            android:layout_marginEnd="@dimen/default_margin"
             app:layout_constraintBottom_toBottomOf="parent"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/basicWeatherInfoDivider" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

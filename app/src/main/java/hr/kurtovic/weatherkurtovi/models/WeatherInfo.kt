@@ -56,7 +56,10 @@ data class BasicWeatherInfo(
     @SerializedName("main")
     val main: String,
     @SerializedName("description")
-    val description: String
+    val description: String,
+    @SerializedName("icon")
+    val icon: String
+
 
 ) {
     override fun toString(): String {

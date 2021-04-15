@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import hr.kurtovic.weatherkurtovi.R
+import hr.kurtovic.weatherkurtovi.helpers.Box
 import hr.kurtovic.weatherkurtovi.models.WeatherInfo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -14,8 +15,8 @@ import io.reactivex.schedulers.Schedulers
 data class State(
     val cityToSearch: String = "",
     val weatherInfo: WeatherInfo? = null,
-    val isWeatherInfoGettingInProgress: Boolean = false,
-    val errorMessageResId: Int? = null
+    val isWeatherInfoLoadingInProgress: Boolean = false,
+    val errorMessageResId: Box<Int?> = Box()
 
 )
 
@@ -32,6 +33,13 @@ sealed class Error {
         fun errorMessageResId(): Int =
                 R.string.error_generic_message
     }
+
+    object InvalidInputError : Error() {
+        @StringRes
+        fun errorMessageResId(): Int =
+                R.string.error_invalid_input_message
+
+    }
 }
 
 fun reduce(state: State, event: Event): State =
@@ -40,7 +48,7 @@ fun reduce(state: State, event: Event): State =
             is Event.CitySearchTextChange -> state.copy(cityToSearch = event.citySearchText)
 
             is Event.WeatherInfoLoaded -> state.copy(
-                isWeatherInfoGettingInProgress = false,
+                isWeatherInfoLoadingInProgress = false,
                 weatherInfo = event.weatherInfo,
                 cityToSearch = ""
             )
@@ -48,17 +56,18 @@ fun reduce(state: State, event: Event): State =
             is Event.ErrorEvent -> {
                 val errorMessageResId = when (val error = event.error) {
                     is Error.GenericError -> error.errorMessageResId()
+                    is Error.InvalidInputError -> error.errorMessageResId()
                 }
 
                 state.copy(
-                    errorMessageResId = errorMessageResId,
-                    isWeatherInfoGettingInProgress = false,
+                    errorMessageResId = Box(errorMessageResId),
+                    isWeatherInfoLoadingInProgress = false,
                     cityToSearch = ""
                 )
 
             }
 
-            Event.GetWeatherInfo -> state.copy(isWeatherInfoGettingInProgress = true)
+            Event.GetWeatherInfo -> state.copy(isWeatherInfoLoadingInProgress = true)
         }
 
 class WeatherInfoViewModel @ViewModelInject constructor(
@@ -79,19 +88,27 @@ class WeatherInfoViewModel @ViewModelInject constructor(
         val newState = reduce(currentState, event)
         internalState.postValue(newState)
 
-        if (newState.isWeatherInfoGettingInProgress) {
+        if (newState.isWeatherInfoLoadingInProgress) {
             getWeatherInfoFor(newState.cityToSearch)
         }
 
-        if (newState.errorMessageResId != null) {
-            internalState.postValue(newState.copy(errorMessageResId = null))
-        }
     }
+
+    private fun inputNotValid(cityName: String): Boolean = cityName.isEmpty()
+
+    private fun cleanUpCityName(cityName: String) = cityName.capitalize()
 
     private fun getWeatherInfoFor(cityName: String) {
 
+        if (inputNotValid(cityName)) {
+            onEvent(Event.ErrorEvent(Error.InvalidInputError))
+            return
+        }
+
+        val query = cleanUpCityName(cityName)
+
         compositeDisposable.add(
-            weatherInfoService.getWeatherInfoFor(cityName = cityName)
+            weatherInfoService.getWeatherInfoFor(cityName = query)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe { success, error ->

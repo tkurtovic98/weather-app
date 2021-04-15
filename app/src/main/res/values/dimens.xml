@@ -16,4 +16,8 @@
     <dimen name="default_padding">16dp</dimen>
     <dimen name="padding_large">32dp</dimen>
 
+    <!-- Icon -->
+    <dimen name="basic_weather_icon_height">100dp</dimen>
+    <dimen name="basic_weather_icon_width">100dp</dimen>
+
 </resources>

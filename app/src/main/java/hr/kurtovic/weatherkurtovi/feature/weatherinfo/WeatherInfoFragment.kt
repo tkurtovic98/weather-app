@@ -5,12 +5,15 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.postDelayed
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import hr.kurtovic.weatherkurtovi.R
+import hr.kurtovic.weatherkurtovi.helpers.IconLoader
 import hr.kurtovic.weatherkurtovi.helpers.hideKeyboard
 import hr.kurtovic.weatherkurtovi.helpers.showKeyboard
 import hr.kurtovic.weatherkurtovi.models.WeatherInfo
@@ -36,10 +39,30 @@ class WeatherInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requestButton.setOnClickListener { getWeatherInfoForCity() }
+        if (savedInstanceState == null) {
+            setupUi()
+        }
 
-        citySearchInput.requestFocus()
-        showKeyboard()
+        weatherInfoViewModel.state.observe(viewLifecycleOwner, { render(it) })
+    }
+
+
+    private fun setupUi() {
+        setupRequestButton()
+        setupCitySearchInput()
+    }
+
+    private fun setupRequestButton() {
+        requestButton.setOnClickListener { getWeatherInfoForCity() }
+    }
+
+    private fun setupCitySearchInput() {
+
+        citySearchInput.postDelayed(100) {
+            citySearchInput.isFocusable = true
+            citySearchInput.requestFocus()
+            citySearchInput.showKeyboard()
+        }
 
         citySearchInput.setOnKeyListener { _, _, keyEvent ->
             handleKeyEvent(keyEvent)
@@ -52,8 +75,6 @@ class WeatherInfoFragment : Fragment() {
                 )
             )
         }
-
-        weatherInfoViewModel.state.observe(viewLifecycleOwner, { render(it) })
     }
 
     private fun handleKeyEvent(keyEvent: KeyEvent): Boolean {
@@ -75,8 +96,8 @@ class WeatherInfoFragment : Fragment() {
 
     private fun render(state: State) {
 
-        if (state.isWeatherInfoGettingInProgress) {
-            hideKeyboard()
+        if (state.isWeatherInfoLoadingInProgress) {
+            citySearchInput.hideKeyboard()
             return
         }
 
@@ -84,18 +105,22 @@ class WeatherInfoFragment : Fragment() {
             renderWeatherInfo(weatherInfo)
         }
 
-        state.errorMessageResId?.let {
-            Snackbar.make(requireView(), it.toString(), Snackbar.LENGTH_SHORT).show()
+        state.errorMessageResId.take {
+            Snackbar.make(requireView(), getString(it!!), Snackbar.LENGTH_SHORT).show()
         }
+
     }
 
     private fun renderWeatherInfo(weatherInfo: WeatherInfo) {
+
         cityNameText.text = weatherInfo.name
-        basicWeatherIcon.text = weatherInfo.weather[0].main
         temperatureText.text = weatherInfo.main.temperature.toString()
         humidityText.text = weatherInfo.main.humidity.toString()
         pressureText.text = weatherInfo.main.pressure.toString()
         windSpeedText.text = weatherInfo.wind.speed.toString()
         windDegreeText.text = weatherInfo.wind.degree.toString()
+
+        val basicWeatherIconResId = IconLoader.loadBasicWeatherIconFromId(weatherInfo.weather[0].icon)
+        Picasso.get().load(basicWeatherIconResId).fit().into(basicWeatherIcon)
     }
 }
