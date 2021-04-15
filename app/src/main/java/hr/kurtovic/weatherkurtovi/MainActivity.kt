@@ -13,7 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        showMainScreen()
+        if (savedInstanceState == null) {
+            showMainScreen()
+        }
     }
 
     private fun showMainScreen() {

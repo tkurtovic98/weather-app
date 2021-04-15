@@ -8,7 +8,6 @@ import javax.inject.Inject
 interface WeatherInfoService {
 
     fun getWeatherInfoFor(cityName: String): Single<WeatherInfo>
-
 }
 
 class WeatherInfoServiceImpl @Inject constructor(
@@ -16,7 +15,5 @@ class WeatherInfoServiceImpl @Inject constructor(
 ) : WeatherInfoService {
 
     override fun getWeatherInfoFor(cityName: String): Single<WeatherInfo> =
-            weatherApi.fetchCityWeatherInfo(cityName)
-
-
+        weatherApi.fetchCityWeatherInfo(cityName)
 }

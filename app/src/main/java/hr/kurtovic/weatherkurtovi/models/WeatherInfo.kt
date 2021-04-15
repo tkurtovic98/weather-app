@@ -60,7 +60,6 @@ data class BasicWeatherInfo(
     @SerializedName("icon")
     val icon: String
 
-
 ) {
     override fun toString(): String {
         return "Basic weather info: $main, $description"

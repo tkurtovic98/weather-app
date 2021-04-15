@@ -12,6 +12,7 @@ import hr.kurtovic.weatherkurtovi.feature.weatherinfo.WeatherInfoServiceImpl
 abstract class WeatherInfoModule {
 
     @Binds
-    abstract fun bindWeatherInfoService(weatherInfoServiceImpl: WeatherInfoServiceImpl): WeatherInfoService
-
+    abstract fun bindWeatherInfoService(
+        weatherInfoServiceImpl: WeatherInfoServiceImpl
+    ): WeatherInfoService
 }

@@ -35,7 +35,6 @@ object Libs {
     private const val rxJavaAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.RX_JAVA_ANDROID}"
     private const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.RX_JAVA}"
 
-    private const val picasso = "com.squareup.picasso:picasso:${Versions.PICASSO}"
 
     val appLibs = arrayListOf<String>().apply {
         add(kotlinStdlib)
@@ -53,7 +52,6 @@ object Libs {
         add(retrofit2GsonConverter)
         add(rxJavaAndroid)
         add(rxJava)
-        add(picasso)
     }
 
 }

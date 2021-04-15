@@ -16,9 +16,6 @@ object Versions {
     //Material design
     const val MATERIAL_DESIGN = "1.3.0"
 
-    //Image loading
-    const val PICASSO = "2.8"
-
     //Architecture components
     const val FRAGMENT_KTX = "1.2.5"
     const val VIEW_MODEL_KTX = "2.2.0"
