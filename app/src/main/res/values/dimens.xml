@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="default_corner_radius">16dp</dimen>
+
+    <!-- Margins -->
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="margin_medium">24dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_extra_large">64dp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="padding_large">32dp</dimen>
+
+    <!-- Icon -->
+    <dimen name="basic_weather_icon_height">100dp</dimen>
+    <dimen name="basic_weather_icon_width">100dp</dimen>
+    <dimen name="cityNameTextWidth">100dp</dimen>
+    <dimen name="text_size_extra_large">128sp</dimen>
+    <dimen name="text_size_large">64sp</dimen>
+    <dimen name="loading_indicator_width">200dp</dimen>
+    <dimen name="loading_indicator_height">200dp</dimen>
+
+</resources>

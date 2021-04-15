@@ -4,7 +4,7 @@ git stash -q --keep-index
 
 echo "Runnig pre-commit hook"
 
-./gradlew ktlint
+./gradlew ktlintformat
 
 RESULT=$?
 

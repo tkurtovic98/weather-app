@@ -28,8 +28,13 @@ object Libs {
     private const val hilt = "com.google.dagger:hilt-android:${Versions.HILT}"
     private const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.HILT_ANDROIDX}"
 
-    private const val roomRuntime = "androidx.room:room-runtime:${Versions.ROOM}"
-    private const val roomKtx = "androidx.room:room-ktx:${Versions.ROOM}"
+    private const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT_2}"
+    private const val retrofit2RxJava = "com.squareup.retrofit2:adapter-rxjava2:${Versions.RETROFIT_2}"
+    private const val retrofit2GsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT_2}"
+
+    private const val rxJavaAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.RX_JAVA_ANDROID}"
+    private const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.RX_JAVA}"
+
 
     val appLibs = arrayListOf<String>().apply {
         add(kotlinStdlib)
@@ -42,8 +47,11 @@ object Libs {
         add(fragmentKtx)
         add(hilt)
         add(hiltViewModel)
-        add(roomRuntime)
-        add(roomKtx)
+        add(retrofit2)
+        add(retrofit2RxJava)
+        add(retrofit2GsonConverter)
+        add(rxJavaAndroid)
+        add(rxJava)
     }
 
 }
@@ -53,14 +61,12 @@ object Compilers {
 
     private const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
 
-    private const val roomCompiler = "androidx.room:room-compiler:${Versions.ROOM}"
 
     private const val hiltAndroidxCompiler  = "androidx.hilt:hilt-compiler:${Versions.HILT_ANDROIDX}"
 
 
     val libCompilers = arrayListOf<String>().apply {
         add(hiltCompiler)
-        add(roomCompiler)
         add(hiltAndroidxCompiler)
     }
 

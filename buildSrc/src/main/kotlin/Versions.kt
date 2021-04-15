@@ -10,7 +10,7 @@ object Versions {
     const val COORDINATOR_LAYOUT = "1.1.0"
 
     //DI
-    const val HILT = "2.28-alpha"
+    const val HILT = "2.33-beta"
     const val HILT_ANDROIDX = "1.0.0-alpha02"
 
     //Material design
@@ -20,8 +20,10 @@ object Versions {
     const val FRAGMENT_KTX = "1.2.5"
     const val VIEW_MODEL_KTX = "2.2.0"
 
-    //Persistence
-    const val ROOM = "2.2.5"
+    const val RETROFIT_2 = "2.9.0"
+
+    const val RX_JAVA_ANDROID = "2.0.1"
+    const val RX_JAVA = "2.1.14"
 
     //Lint
     const val KT_LINT_GRADLE = "10.0.0"

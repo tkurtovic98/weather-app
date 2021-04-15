@@ -4,6 +4,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
+    id("kotlin-android")
     id("org.jlleitschuh.gradle.ktlint") version Versions.KT_LINT_GRADLE
 }
 
@@ -18,6 +19,13 @@ android {
         versionName = AppConfig.versionName
 
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
+
+        buildConfigField(
+            "String",
+            "WEATHER_API_BASE_URL",
+            "\"https://api.openweathermap.org/data/2.5/\""
+        )
+        buildConfigField("String", "WEATHER_API_KEY", "\"adb9c161b276d709b4880f1162c2e349\"")
     }
 
     buildTypes {

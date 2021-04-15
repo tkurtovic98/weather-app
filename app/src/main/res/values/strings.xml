@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Weather Kurtović</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="city_search_hint">Enter city to search</string>
+    <string name="error_service_unavailable">Service is currently unavailable. Please try again in a few moments</string>
+    <string name="error_generic_message">Something went wrong. Please try again.</string>
+    <string name="error_invalid_input_message">Your input is not valid! Please try again.</string>
+
+    <string name="units_metric_temperature">%s</string>
+    <string name="units_metric_humidity">%s %%</string>
+    <string name="units_metric_pressure">%s Pa</string>
+    <string name="units_metric_wind_speed">%s m/s %s</string>
+    <string name="units_metric_wind_degree">%s \u00B0</string>
+    <string name="empty_screen_text">Looks like you have not searched for anything yet. Let\'s change that!</string>
+    <string name="metric_celsius">℃</string>
+    <string name="get_weather">Get Weather</string>
+
+
 </resources>

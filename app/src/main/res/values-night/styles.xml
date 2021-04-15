@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ActivityDefaultStyle">
+        <item name="backgroundColor">@color/navy_blue</item>
+    </style>
+
+    <style name="TextViewDefaultStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
+    </style>
+
+    <style name="TextAppearance.AppTheme.CityName" parent="TextAppearance.MaterialComponents.Headline4"></style>
+
+    <style name="BasicWeatherInfoIconStyle">
+        <item name="tint">@color/light_grey</item>
+    </style>
+
+    <style name="MainWeatherInfoIconStyle">
+        <item name="tint">@color/light_grey</item>
+    </style>
+</resources>
