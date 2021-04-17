@@ -48,7 +48,10 @@ class WeatherInfoViewModel @ViewModelInject constructor(
         )
     }
 
-    private fun inputNotValid(cityName: String): Boolean = cityName.isEmpty()
+    private fun inputNotValid(cityName: String): Boolean =
+            cityName.isEmpty() || cityName.contains(
+                Regex(pattern = "[0-9]+")
+            )
 
     private fun cleanUpCityName(cityName: String) = cityName.capitalize()
 

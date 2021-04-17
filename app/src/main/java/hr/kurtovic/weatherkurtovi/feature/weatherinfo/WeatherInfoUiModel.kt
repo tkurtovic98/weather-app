@@ -16,7 +16,21 @@ data class WeatherInfoUiModel(
 
 )
 
+private fun validationMessageIsNotOk(message: String): Boolean = !message.contentEquals(
+    WeatherInfoValidationStatus.OK.message()
+)
+
+private fun String.isNotValidMessage(): Boolean = !this.contentEquals(
+    WeatherInfoValidationStatus.OK.message()
+)
+
 fun fromWeatherInfoToUiModel(weatherInfo: WeatherInfo): WeatherInfoUiModel {
+
+    val validationMessage = weatherInfoValidation(weatherInfo)
+
+    if (validationMessage.isNotValidMessage()) {
+        throw Exception(validationMessage)
+    }
 
     val name = weatherInfo.name
     val temperature = weatherInfo.main.temperature.roundToInt().toString()
@@ -48,4 +62,33 @@ fun fromWeatherInfoToUiModel(weatherInfo: WeatherInfo): WeatherInfoUiModel {
         iconId = iconId,
         basicDescription = basicDescription
     )
+}
+
+private fun weatherInfoValidation(weatherInfo: WeatherInfo): String {
+
+    if (weatherInfo.name.isEmpty()) {
+        return WeatherInfoValidationStatus.EmptyCityError.message()
+    }
+
+    if (weatherInfo.weather.isEmpty()) {
+        return WeatherInfoValidationStatus.EmptyWeatherArrayError.message()
+    }
+
+    return WeatherInfoValidationStatus.OK.message()
+}
+
+sealed class WeatherInfoValidationStatus {
+
+    object EmptyCityError : WeatherInfoValidationStatus() {
+        fun message() = "Name of city can't be empty."
+    }
+
+    object EmptyWeatherArrayError : WeatherInfoValidationStatus() {
+        fun message() = "Weather array must not be empty"
+    }
+
+    object OK : WeatherInfoValidationStatus() {
+        fun message() = "OK"
+    }
+
 }

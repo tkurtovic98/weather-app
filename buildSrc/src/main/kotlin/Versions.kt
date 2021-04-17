@@ -31,5 +31,9 @@ object Versions {
     //Testing
     const val JUNIT = "4.12"
     const val ANDROIDX_TEST_EXT_KOTLIN_RUNNER = "1.1.1"
+    const val ESPRESSO = "3.2.0-beta01"
+    const val TRUTH = "1.1.2"
+    const val ARCH = "2.1.0"
+
 
 }

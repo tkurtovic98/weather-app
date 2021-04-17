@@ -46,6 +46,10 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -54,6 +58,7 @@ dependencies {
     implementation(Libs.appLibs)
     kapt(Compilers.libCompilers)
     testImplementation(Testing.testingLibs)
+    androidTestImplementation(Testing.androidTestingLibs)
 }
 
 ktlint {

@@ -79,10 +79,25 @@ object Testing {
     private const val jUnit = "junit:junit:${Versions.JUNIT}"
     private const val jUnitAndroidxKtx = "androidx.test.ext:junit-ktx:${Versions.ANDROIDX_TEST_EXT_KOTLIN_RUNNER}"
 
+    private const val espresso = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO}"
+    private const val truth = "com.google.truth:truth:${Versions.TRUTH}"
+
+    private const val arch = "androidx.arch.core:core-testing:${Versions.ARCH}"
+
     val testingLibs = arrayListOf<String>().apply {
         add(jUnitAndroidx)
         add(jUnit)
         add(jUnitAndroidxKtx)
+        add(truth)
+        add(arch)
+    }
+
+
+    val androidTestingLibs = arrayListOf<String>().apply {
+        add(espresso)
+        add(jUnitAndroidxKtx)
+        add(jUnitAndroidx)
+        add(truth)
     }
 }
 
